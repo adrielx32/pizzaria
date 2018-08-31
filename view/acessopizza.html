@@ -1,0 +1,116 @@
+<html>
+    <head>
+    <title>PIZZA</title>
+<style>
+    p{
+        font-size: 20px;
+        color:#100e0e;
+    }
+    body{
+        background-color: #d1e9f7;
+    }
+    
+input{
+   width: 100px;
+   height: 30px;
+}
+    
+    select.select{
+        width:400px;
+        height:40px;
+        font-size:20px;
+        background-color:antiquewhite;
+    }
+    
+    img{
+        width:150px;
+        height:120px;
+    }
+    
+    input{
+        width:100px;
+        height:40px;
+        font-size:18px;
+        background-color:#69cece;
+    }
+        </style>       
+</head>
+    
+    <body>
+<form method="POST" action="../controller/captura.php">
+    <meta charset="utf-8">
+        <table align="center">
+<tr>
+    <td align="center"><font size="6px" color="#f40303">
+        <img src="../icone/ico.JPG">    
+<p>
+    <b>PIZZARIA</b></font>
+</p>
+        
+<p><font size="5px" color="#100e0e">
+    <b>ESCOLHA UMA PIZZA!</b> 
+</p>
+
+<select class="select" name="select1">
+    <font size="5px" color="#100e0e">
+<option name="pequena" value="pequena">
+       PEQUENA 
+</option>
+
+<option name="media" value="media">
+        MÉDIA 
+</option>
+    
+<option name="grande" value="grande">
+        GRANDE 
+</option>    
+</select>
+
+ <p><font size="5px" color="#100e0e">
+    <b>SABOR</b></font>
+</p>
+        
+<select class="select" name="select2">
+    <font size="5px" color="#100e0e">
+        
+<option name="calabresa" value="calabresa">
+        CALABRESA
+</option>
+
+<option name="marguerita" value="marguerita">
+        MARGUERITA
+</option>
+    
+<option name="portuguesa" value="portuguesa">
+        PORTUGUESA
+</option>    
+</select>
+    
+<tr>
+    <td align="center">
+        <input type="submit" value="AVANÇAR">   
+    </td>
+</tr>    
+    
+    </td>
+</tr>   
+</font>
+</form>
+</table>    
+      <p align="left">
+        <font size='3px'>
+        <b>|LISTA VALORES|</b>
+        <br>PEQUENA -- R$ 20,00 
+        <br>MÉDIA -- R$ 30,00
+        <br>GRANDE -- R$ 40,00
+        <br>
+        <b>|TEMPO|
+        <br>Pequena 15min
+        <br>Média 20min
+        <br>Grande 25min
+        <b><br>Pizza Portuguesa +5min Preparo   
+            </font>
+            </b>
+        </p>
+    </body>
+</html>

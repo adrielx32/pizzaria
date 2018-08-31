@@ -1,0 +1,11 @@
+CREATE TABLE pizza(
+    id int AUTO_INCREMENT,
+    tempo varchar(4),
+    valorfinal float(20),
+    detalhesproduto varchar(100),
+    personalizacao varchar(100),
+    primary key(id)
+    );
+    
+    
+    

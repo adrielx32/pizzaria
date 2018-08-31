@@ -1,0 +1,584 @@
+
+
+
+<style>
+    a{
+        text-decoration: none;
+        background: #9595f0;
+        font-size: 25px;
+    }
+</style>
+
+<?php
+class Pizza{
+    public $select1,$select2,$extrabacon1,$semcebola1,$marguerita1,$extrabacon2,$semcebola2,$marguerita2,$valorfinal,$tempo,$detalhe,$id,$bordarecheada1,$bordarecheada2;
+    
+    public function __set($atributo,$valor){
+        $this->$atributo=$valor;        
+    }
+    public function __get($atributo){
+        return $this->$atributo;
+    }
+  
+
+public function funcaopizza2($id,$extrabacon1,$semcebola1,$marguerita1,$extrabacon2,$semcebola2,$marguerita2,$bordarecheada1,$bordarecheada2){
+    
+if($extrabacon1 || $extrabacon2){
+include("conexaobanco.php");
+$this->id=$id;
+    
+$sql2="SELECT * FROM pizza where id='$this->id'";
+$query = mysql_query($sql2);
+    
+        if($extrabacon1){
+    $detalhe="Personalizacao1=".$extrabacon1;
+    $this->detalhe=$detalhe;
+    }
+     else if($extrabacon2){
+    $detalhe="Personalizacao2=".$extrabacon2;
+    $this->detalhe=$detalhe;  
+     }
+    
+while($linha = mysql_fetch_array($query)) {
+        $this->valorfinal="$linha[valorfinal]"+'3.00'; 
+   
+    $sql3="UPDATE pizza SET valorfinal='$this->valorfinal',personalizacao='$this->detalhe' WHERE id=$this->id";
+  $inserir3=$conectar->query($sql3);
+    
+        if ($sql3){  
+            
+        echo "PERSONALIZADO<br>";
+        echo "<br></br><a href='../view/acessopizza.html'>INICIO</a>";
+        echo "<br></br>
+        <a href='../view/finalizar.php?id=$linha[id]'>        
+<img src='../icone/resumo.jpg' width='50px' height='50px'>
+        INFORMAÇÕES PEDIDO</a>";  
+         }
+      }  
+     
+}
+
+
+if($extrabacon1 and $extrabacon2){
+    echo "Oi";
+    exit;
+    $detalhe="Personalizacao1=".$extrabacon1;
+
+    $this->detalhe=$detalhe;
+   
+    $detalhe="Personalizacao2=".$extrabacon2;
+    $this->detalhe=$detalhe;  
+   
+    $this->id=$id; 
+      
+$sql3="SELECT * FROM pizza where id='$this->id'";
+$inserir3=$conectar->query($sql3);
+    
+    while($linha = $inserir3->fetch_array()){ 
+        $this->valorfinal="$linha[valorfinal]"+'6.00'; 
+    
+        if($extrabacon1){
+    $detalhe="Personalizacao1=".$extrabacon1;
+    $this->detalhe=$detalhe;
+    }
+     else if($extrabacon2){
+    $detalhe="Personalizacao2=".$extrabacon2;
+    $this->detalhe=$detalhe;  
+     }
+   
+    $sql5="UPDATE pizza SET valorfinal='$this->valorfinal',personalizacao='$this->detalhe' WHERE id=$this->id";
+  $inserir5=$conectar->query($sql5);
+    
+      }  
+     
+}
+
+
+
+if($extrabacon1  || $extrabacon2 and $semcebola1){ 
+include("conexaobanco.php");
+     
+       if($extrabacon1 and $semcebola1){   
+    $detalhe="Personalizacao1=".$extrabacon1."Personalizacao2=".$semcebola1;
+     $this->detalhe=$detalhe;
+}
+     else if($extrabacon2 and $semcebola1){
+ $detalhe="Personalizacao1=".$extrabacon2."Personalizacao2=".$semcebola1;
+ $this->detalhe=$detalhe;  
+     }  
+$this->id=$id;   
+
+        while ($linha = $inserir->fetch_array())  {
+            
+            $this->valorfinal="$linha[valorfinal]"+'3.00';              
+$sql="UPDATE pizza SET valorfinal='$this->valorfinal',personalizacao='$this->detalhe' WHERE id=$this->id"; 
+   $inserir1=$conectar->query($sql);          
+         
+   }         
+}
+
+
+   
+
+    
+if($extrabacon1  || $extrabacon2 and $semcebola2){ 
+include("conexaobanco.php");
+
+$this->detalhe=$detalhe="Personalizacao1=".$extrabacon1."Personalizacao2=".$semcebola2;
+
+if($extrabacon1 and $semcebola1){
+    $detalhe="Personalizacao1=".$extrabacon1."Personalizacao2=".$semcebola2;
+    $this->detalhe=$detalhe;
+}
+
+else if($extrabacon2 and $semcebola2){     $detalhe="Personalizacao1=".$extrabacon2."Personalizacao2=".$semcebola2;
+    $this->detalhe=$detalhe;  
+}
+
+ $this->id=$id;   
+
+   $sql = "SELECT * FROM pizza  WHERE id='$this->id'";
+ 
+    $inserir=$conectar->query($sql);
+  
+        while ($linha = $inserir->fetch_array())  {
+         echo "PERSONALIZAÇÃO REALIZADAs";
+            $this->valorfinal="$linha[valorfinal]"+'3.00';    
+$sql1="UPDATE pizza SET valorfinal='$this->valorfinal',personalizacao='$this->detalhe' WHERE id='$this->id'";
+$result1 = $conectar->query($sql1); 
+
+        }
+        }   
+
+ 
+if($semcebola1 || $semcebola2){
+include("conexaobanco.php");
+
+    
+    if($semcebola1){
+    $detalhe="Personalizacao1=".$semcebola1;
+    $this->detalhe=$detalhe;
+    }
+     else if($semcebola2){
+    $detalhe="Personalizacao2=".$semcebola2;
+    $this->detalhe=$detalhe;  
+     }
+    $this->id=$id;
+  $sql = "SELECT * FROM pizza  WHERE id='$this->id'";
+ 
+    $inserir=$conectar->query($sql);
+  
+        while ($linha = $inserir->fetch_array())  {
+         echo "PERSONALIZAÇÃO REALIZADA";
+           
+echo $sql1="UPDATE pizza SET personalizacao='$this->detalhe' WHERE id='$this->id'";
+$result1 = $conectar->query($sql1); 
+
+        }
+        }   
+
+
+if($semcebola1 and $semcebola2){
+include("conexaobanco.php");
+
+$detalhe="Personalizacao1= ".$semcebola1." Personalizacao2= ".$semcebola2;
+    $this->detalhe=$detalhe;  
+    $this->id=$id;  
+   
+   $sql = "SELECT * FROM pizza  WHERE id='$this->id'";
+ 
+    $inserir=$conectar->query($sql);
+  
+        while ($linha = $inserir->fetch_array())  {
+         echo "PERSONALIZAÇÃO REALIZADA";
+           
+echo $sql1="UPDATE pizza SET personalizacao='$this->detalhe' WHERE id='$this->id'";
+$result1 = $conectar->query($sql1); 
+
+        }
+        }   
+
+if($semcebola1 and $bordarecheada1){
+include("conexaobanco.php");
+
+
+     $detalhe="Personalizacao1= ".$semcebola1." Personalizacao2= ".$bordarecheada1;
+        $this->detalhe=$detalhe;  
+        $this->id=$id;  
+
+   $sql = "SELECT * FROM pizza  WHERE id='$this->id'";
+ 
+    $inserir=$conectar->query($sql);
+  
+        while ($linha = $inserir->fetch_array())  {
+         echo "PERSONALIZAÇÃO REALIZADA";
+       
+    $this->valorfinal="$linha[valorfinal]"+'5.00';     
+            
+    $this->tempo="$linha[tempo]"+'5';
+echo $sql1="UPDATE pizza SET valorfinal='$this->valorfinal',tempo='$this->tempo',personalizacao='$this->detalhe' WHERE id='$this->id'";
+$result1 = $conectar->query($sql1); 
+
+        }
+        }   
+
+    
+if($semcebola1 and $bordarecheada2){
+include("conexaobanco.php");
+
+    
+    $detalhe="Personalizacao1= ".$semcebola1." Personalizacao2= ".$bordarecheada1;
+    
+    $this->detalhe=$detalhe;  
+    $this->id=$id;   
+  $sql = "SELECT * FROM pizza  WHERE id='$this->id'";
+ 
+    $inserir=$conectar->query($sql);
+  
+        while ($linha = $inserir->fetch_array())  {
+         echo "PERSONALIZAÇÃO REALIZADA";
+       
+    $this->valorfinal="$linha[valorfinal]"+'5.00';     
+            
+    $this->tempo="$linha[tempo]"+'5';
+echo $sql1="UPDATE pizza SET valorfinal='$this->valorfinal',tempo='$this->tempo',personalizacao='$this->detalhe' WHERE id='$this->id'";
+$result1 = $conectar->query($sql1); 
+
+        }
+        }   
+
+ 
+    
+
+if($semcebola1 and $bordarecheada2){
+include("conexaobanco.php");
+
+    
+    
+     $detalhe="Personalizacao1= ".$semcebola1." Personalizacao2= ".$bordarecheada2;
+     
+     $this->detalhe=$detalhe;  
+     
+     $this->id=$id;
+ 
+    $sql = "SELECT * FROM pizza  WHERE id='$this->id'";
+ 
+    $inserir=$conectar->query($sql);
+  
+        while ($linha = $inserir->fetch_array())  {
+         echo "PERSONALIZAÇÃO REALIZADA";
+       
+    $this->valorfinal="$linha[valorfinal]"+'5.00';     
+            
+    $this->tempo="$linha[tempo]"+'5';
+echo $sql1="UPDATE pizza SET valorfinal='$this->valorfinal',tempo='$this->tempo',personalizacao='$this->detalhe' WHERE id='$this->id'";
+$result1 = $conectar->query($sql1); 
+
+        }
+        }   
+
+     
+if($bordarecheada1){
+include("conexaobanco.php");
+
+    
+    $detalhe="Personalizacao1= ".$bordarecheada1." Personalizacao2= ".$bordarecheada2;
+     $this->detalhe=$detalhe;  
+     $this->id=$id;
+ 
+      $sql = "SELECT * FROM pizza  WHERE id='$this->id'";
+ 
+    $inserir=$conectar->query($sql);
+  
+        while ($linha = $inserir->fetch_array())  {
+         echo "PERSONALIZAÇÃO REALIZADA";
+       
+    $this->valorfinal="$linha[valorfinal]"+'5.00';     
+            
+    $this->tempo="$linha[tempo]"+'5';
+echo $sql1="UPDATE pizza SET valorfinal='$this->valorfinal',tempo='$this->tempo',personalizacao='$this->detalhe' WHERE id='$this->id'";
+$result1 = $conectar->query($sql1); 
+
+        }
+        }  
+    
+
+    
+     
+if($bordarecheada2){
+include("conexaobanco.php");
+$sql2="SELECT * FROM pizza where id=$id";
+
+        
+        $detalhe="Personalizacao1= ".$bordarecheada1." Personalizacao2= ".$bordarecheada2;
+        
+        $this->detalhe=$detalhe;  
+        $this->id=$id;
+     
+        $sql = "SELECT * FROM pizza  WHERE id='$this->id'";
+ 
+    $inserir=$conectar->query($sql);
+  
+        while ($linha = $inserir->fetch_array())  {
+         echo "PERSONALIZAÇÃO REALIZADA";
+       
+    $this->valorfinal="$linha[valorfinal]"+'5.00';     
+            
+    $this->tempo="$linha[tempo]"+'5';
+echo $sql1="UPDATE pizza SET valorfinal='$this->valorfinal',tempo='$this->tempo',personalizacao='$this->detalhe' WHERE id='$this->id'";
+$result1 = $conectar->query($sql1); 
+
+        }
+        }  
+
+if($bordarecheada1 and $bordarecheada2){
+include("conexaobanco.php");
+    
+    $detalhe="Personalizacao1= ".$bordarecheada1." Personalizacao2= ".$bordarecheada2;
+    $this->detalhe=$detalhe;  
+    $this->id=$id;
+   
+        $sql = "SELECT * FROM pizza  WHERE id='$this->id'";
+ 
+    $inserir=$conectar->query($sql);
+  
+        while ($linha = $inserir->fetch_array())  {
+         echo "PERSONALIZAÇÃO REALIZADA";
+       
+    $this->valorfinal="$linha[valorfinal]"+'5.00'+'5.00';     
+            
+    $this->tempo="$linha[tempo]"+'5'+'5';
+echo $sql1="UPDATE pizza SET valorfinal='$this->valorfinal',tempo='$this->tempo',personalizacao='$this->detalhe' WHERE id='$this->id'";
+$result1 = $conectar->query($sql1); 
+
+        }
+        }  
+    
+    
+if($extrabacon1 and $bordarecheada1){
+include("conexaobanco.php");
+    
+    
+        $detalhe="Personalizacao1= ".$extrabacon1." Personalizacao2= ".$bordarecheada1;
+        
+        $this->detalhe=$detalhe;  
+        $this->id=$id;
+ 
+    
+        $sql = "SELECT * FROM pizza  WHERE id='$this->id'";
+ 
+    $inserir=$conectar->query($sql);
+  
+        while ($linha = $inserir->fetch_array())  {
+         echo "PERSONALIZAÇÃO REALIZADA";
+       
+    $this->valorfinal="$linha[valorfinal]"+'3.00'+'5.00';     
+            
+    $this->tempo="$linha[tempo]"+'5'+'5';
+echo $sql1="UPDATE pizza SET valorfinal='$this->valorfinal',tempo='$this->tempo',personalizacao='$this->detalhe' WHERE id='$this->id'";
+$result1 = $conectar->query($sql1); 
+
+        }
+        }  
+    
+    
+    
+if($extrabacon1 and $bordarecheada2){
+include("conexaobanco.php");
+    
+    
+    $detalhe="Personalizacao1= ".$extrabacon1." Personalizacao2= ".$bordarecheada2;
+    
+    $this->detalhe=$detalhe;  
+    $this->id=$id;
+  
+        $sql = "SELECT * FROM pizza  WHERE id='$this->id'";
+ 
+    $inserir=$conectar->query($sql);
+  
+        while ($linha = $inserir->fetch_array())  {
+         echo "PERSONALIZAÇÃO REALIZADA";
+       
+    $this->valorfinal="$linha[valorfinal]"+'3.00'+'5.00';     
+            
+    $this->tempo="$linha[tempo]"+'5'+'5';
+echo $sql1="UPDATE pizza SET valorfinal='$this->valorfinal',tempo='$this->tempo',personalizacao='$this->detalhe' WHERE id='$this->id'";
+$result1 = $conectar->query($sql1); 
+
+        }
+        }  
+    
+    
+
+if($extrabacon2 and $bordarecheada2){
+include("conexaobanco.php"); 
+    
+    
+    $detalhe="Personalizacao1= ".$extrabacon2." Personalizacao2= ".$bordarecheada2;
+    
+        $this->detalhe=$detalhe;  
+        $this->id=$id;
+
+       $sql = "SELECT * FROM pizza  WHERE id='$this->id'";
+ 
+    $inserir=$conectar->query($sql);
+  
+        while ($linha = $inserir->fetch_array())  {
+         echo "PERSONALIZAÇÃO REALIZADA";
+       
+    $this->valorfinal="$linha[valorfinal]"+'3.00'+'5.00';     
+            
+    $this->tempo="$linha[tempo]"+'5'+'5';
+echo $sql1="UPDATE pizza SET valorfinal='$this->valorfinal',tempo='$this->tempo',personalizacao='$this->detalhe' WHERE id='$this->id'";
+$result1 = $conectar->query($sql1); 
+
+        }
+        }  
+     
+    
+    
+
+ if($semcebola1 and $bordarecheada1){
+include("conexaobanco.php");
+
+    
+    $detalhe="Personalizacao1= ".$semcebola1." Personalizacao2= ".$bordarecheada1;
+        
+        $this->detalhe=$detalhe;  
+        $this->id=$id;
+     
+     
+         $sql = "SELECT * FROM pizza  WHERE id='$this->id'";
+ 
+    $inserir=$conectar->query($sql);
+  
+        while ($linha = $inserir->fetch_array())  {
+         echo "PERSONALIZAÇÃO REALIZADA";
+       
+    $this->valorfinal="$linha[valorfinal]"+'5.00';     
+            
+    $this->tempo="$linha[tempo]"+'5';
+echo $sql1="UPDATE pizza SET valorfinal='$this->valorfinal',tempo='$this->tempo',personalizacao='$this->detalhe' WHERE id='$this->id'";
+$result1 = $conectar->query($sql1); 
+
+        }
+        }  
+    
+    
+if($semcebola1 and $bordarecheada2){
+include("conexaobanco.php");
+
+    
+    $detalhe="Personalizacao1= ".$semcebola1." Personalizacao2= ".$bordarecheada2;
+    
+    $this->detalhe=$detalhe;  
+    $this->id=$id;
+
+        $sql = "SELECT * FROM pizza  WHERE id='$this->id'";
+ 
+    $inserir=$conectar->query($sql);
+  
+        while ($linha = $inserir->fetch_array())  {
+         echo "PERSONALIZAÇÃO REALIZADA";
+       
+    $this->valorfinal="$linha[valorfinal]"+'5.00';     
+            
+    $this->tempo="$linha[tempo]"+'5';
+echo $sql1="UPDATE pizza SET valorfinal='$this->valorfinal',tempo='$this->tempo',personalizacao='$this->detalhe' WHERE id='$this->id'";
+$result1 = $conectar->query($sql1); 
+
+        }
+        }  
+    
+
+    
+    
+if($semcebola2 and $bordarecheada1){
+include("conexaobanco.php");
+
+     
+    $detalhe="Personalizacao1= ".$semcebola2." Personalizacao2= ".$bordarecheada1;
+    
+     $this->detalhe=$detalhe;  
+     $this->id=$id;
+
+     $sql = "SELECT * FROM pizza  WHERE id='$this->id'";
+ 
+    $inserir=$conectar->query($sql);
+  
+        while ($linha = $inserir->fetch_array())  {
+         echo "PERSONALIZAÇÃO REALIZADA";
+       
+    $this->valorfinal="$linha[valorfinal]"+'5.00';     
+            
+    $this->tempo="$linha[tempo]"+'5';
+echo $sql1="UPDATE pizza SET valorfinal='$this->valorfinal',tempo='$this->tempo',personalizacao='$this->detalhe' WHERE id='$this->id'";
+$result1 = $conectar->query($sql1); 
+
+        }
+        }  
+    
+    
+    
+    
+if($semcebola2 and $bordarecheada2){
+include("conexaobanco.php");
+ 
+    
+    
+    $detalhe="Personalizacao1= ".$semcebola2." Personalizacao2= ".$bordarecheada2;
+    
+     $this->detalhe=$detalhe;  
+     $this->id=$id;
+  $sql = "SELECT * FROM pizza  WHERE id='$this->id'";
+ 
+    $inserir=$conectar->query($sql);
+  
+        while ($linha = $inserir->fetch_array())  {
+         echo "PERSONALIZAÇÃO REALIZADA";
+       
+    $this->valorfinal="$linha[valorfinal]"+'5.00';     
+            
+    $this->tempo="$linha[tempo]"+'5';
+echo $sql1="UPDATE pizza SET valorfinal='$this->valorfinal',tempo='$this->tempo',personalizacao='$this->detalhe' WHERE id='$this->id'";
+$result1 = $conectar->query($sql1); 
+
+        }
+}
+}
+    
+
+ public function listarpizzas($id){    
+include("conexaobanco.php");
+    
+$sql2="SELECT * FROM pizza where id=$id";
+$inserir=$conectar->query($sql2);
+if($inserir){
+    
+
+while ($linha = $inserir->fetch_array()){
+    echo"<table align='center' border='7px'>"; 
+        echo"<tr><td>";
+ 
+echo "<b><font size='6px'>PEDIDO N°:</b>"."$linha[id]";
+        echo "<tr><td>";    
+    
+echo "<b><font size='6px'>DETALHES:</b>"."$linha[detalhesproduto]";
+        echo"<tr><td>";
+    
+echo "<b><font size='6px'>Personalizações:</b>  "."$linha[personalizacao]";    
+    echo"<tr><td>";
+    
+echo "<b><font size='6px'>Valor Total: R$= </b>  "."$linha[valorfinal].00"." reais"; 
+      echo"<tr><td>";
+    
+echo "<b><font size='6px'>Tempo Preparo: = </b>  "."$linha[tempo]"." minutos";
+    echo"<tr align='center'><td>";
+
+      }
+}
+
+}    
+} 
+?>
+    
